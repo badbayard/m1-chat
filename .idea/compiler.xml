@@ -6,9 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="projet-web" />
+        <module name="m1-chat" />
         <module name="projetweb" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="projet-web" target="1.7" />
+    </bytecodeTargetLevel>
   </component>
 </project>
