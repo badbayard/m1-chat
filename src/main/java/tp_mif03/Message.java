@@ -1,3 +1,5 @@
+package tp_mif03;
+
 public class Message {
     private final String pseudo;
     private String texte;
