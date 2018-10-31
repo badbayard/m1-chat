@@ -21,11 +21,10 @@ public class Init extends HttpServlet {
             PrintWriter pw = res.getWriter();
             String pseudo = req.getParameter("pseudo"); //récupération du pseudo
             HttpSession session = req.getSession(); // récupération de la session
-            pw.println("<h1>"+pseudo+"</h1>");
-            pw.println("<h2>"+session+"</h2>");
-           //pw.println("<h3>"+session_with_pseudo+"</h3>");
-            //res.setStatus(res.SC_MOVED_TEMPORARILY);
-            //res.setHeader("location","index.html");
+            //pw.println("<h1>"+pseudo+"</h1>");
+            //pw.println("<h2>"+session+"</h2>");
+            res.setStatus(res.SC_MOVED_TEMPORARILY);
+            res.setHeader("location","interface.html");
 
     }
 }
