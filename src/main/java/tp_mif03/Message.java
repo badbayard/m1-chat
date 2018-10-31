@@ -1,5 +1,7 @@
 package tp_mif03;
 
+import javax.print.DocFlavor;
+
 public class Message {
     private final String pseudo;
     private String texte;
@@ -19,5 +21,10 @@ public class Message {
 
     public void setTexte(String texte) {
         this.texte = texte;
+    }
+
+    @Override
+    public String toString() {
+        return pseudo+ " : " + texte ;
     }
 }
