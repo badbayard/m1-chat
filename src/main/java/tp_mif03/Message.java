@@ -5,6 +5,7 @@ import javax.print.DocFlavor;
 public class Message {
     private final String pseudo;
     private String texte;
+    private String nom_salon;
 
     public Message(String pseudo, String texte) {
         this.pseudo = pseudo;
@@ -22,6 +23,8 @@ public class Message {
     public void setTexte(String texte) {
         this.texte = texte;
     }
+
+    public String getNomSalon(){ return nom_salon ;}
 
     @Override
     public String toString() {

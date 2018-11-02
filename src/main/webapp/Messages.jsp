@@ -12,9 +12,10 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="refresh" content="5"/>
 </head>
 <body>
-<h1> chat </h1>
+<% out.println("<h1>"+ session.getAttribute("nom_salon")+"</h1>"); %>
 <%
     if (request.getMethod().equals("POST"))
     {

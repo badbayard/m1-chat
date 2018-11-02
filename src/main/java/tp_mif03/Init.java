@@ -41,6 +41,7 @@ public class Init extends HttpServlet {
             res.setContentType("text/html");
             PrintWriter pw = res.getWriter();
             String pseudo = req.getParameter("pseudo"); //récupération du pseudo
+            String nom_salon = req.getParameter("nom_salon");//récupération du nom du salon
             HttpSession session = req.getSession(true); // récupération de la session
             //pw.println("<h1>"+pseudo+"</h1>");
             //pw.println("<h2>"+session+"</h2>");
