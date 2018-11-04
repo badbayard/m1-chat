@@ -1,10 +1,13 @@
-<%@page import="java.util.List"%>
-<%@page import="java.io.IOException"%>
+<%@page import="java.lang.String"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="tp_mif03.Message"%>
+<%@page import="tp_mif03.SalonList"%>
 
 
-<%!  private List<Message> list = new ArrayList<Message>();%>
+<%! SalonList sList = new SalonList(); %>
+
+<%  String nomSalon=(String)session.getAttribute("nom_salon");
+    sList.addSalon(nomSalon);%>
 
 
 <!DOCTYPE html>
@@ -15,13 +18,14 @@
     <meta http-equiv="refresh" content="5"/>
 </head>
 <body>
-<% out.println("<h1>"+ session.getAttribute("nom_salon")+"</h1>"); %>
-<%
+<% out.println("<h1>"+ session.getAttribute("nom_salon") +"</h1>");
+
+
     if (request.getMethod().equals("POST"))
     {
-        list.add(new Message((String) session.getAttribute("pseudo"), (String) request.getParameter("message")));
+        sList.addMsg(nomSalon, (String)session.getAttribute("pseudo"), (String)request.getParameter("message"));
     }
-    for (Message m : list)
+    for (Message m : sList.getSalon(nomSalon))
     {
         out.println("<p>" + m.toString() + "</p>");
     }

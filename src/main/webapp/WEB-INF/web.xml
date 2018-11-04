@@ -9,12 +9,13 @@
         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
         version="3.0">
   <display-name>Archetype Created Web Application</display-name>
+
     <servlet>
-        <servlet-name>Init</servlet-name>
-        <servlet-class>tp_mif03.Init</servlet-class>
+        <servlet-name>Controller</servlet-name>
+        <servlet-class>tp_mif03.Controller</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>Init</servlet-name>
-        <url-pattern>/Init</url-pattern>
+        <servlet-name>Controller</servlet-name>
+        <url-pattern>/Controller</url-pattern>
     </servlet-mapping>
 </web-app>
