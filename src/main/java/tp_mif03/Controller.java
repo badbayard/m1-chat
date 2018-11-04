@@ -30,7 +30,7 @@ public class Controller extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html");//setting the content type
+        response.setContentType("text/html");
         response.sendRedirect("index.html");
         processRequest(request, response);
         if (request.getParameter("Deco") != null) {

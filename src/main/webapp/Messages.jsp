@@ -1,19 +1,13 @@
 <%@page import="java.lang.String"%>
-<%@page import="java.io.IOException"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="java.util.List"%>
-<%@page import="java.util.HashMap"%>
 <%@page import="tp_mif03.Message"%>
+<%@page import="tp_mif03.SalonList"%>
 
 
-<%!  HashMap<String, ArrayList<Message>> salonList = new HashMap<String, ArrayList<Message>>(); %>
+<%! SalonList sList = new SalonList(); %>
 
 <%  String nomSalon=(String)session.getAttribute("nom_salon");
-    if(!salonList.containsKey(nomSalon)) {
-        ArrayList<Message> listeMessage = new ArrayList<Message>();
-        salonList.put(nomSalon, listeMessage);
-    }
-%>
+    sList.addSalon(nomSalon);%>
 
 
 <!DOCTYPE html>
@@ -29,9 +23,9 @@
 
     if (request.getMethod().equals("POST"))
     {
-        salonList.get(nomSalon).add(new Message((String) session.getAttribute("pseudo"), (String) request.getParameter("message")));
-   }
-    for (Message m : salonList.get(nomSalon))
+        sList.addMsg(nomSalon, (String)session.getAttribute("pseudo"), (String)request.getParameter("message"));
+    }
+    for (Message m : sList.getSalon(nomSalon))
     {
         out.println("<p>" + m.toString() + "</p>");
     }
