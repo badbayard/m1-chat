@@ -1,10 +1,23 @@
-<%@page import="java.util.List"%>
+<%@page import="java.lang.String"%>
 <%@page import="java.io.IOException"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.HashMap"%>
 <%@page import="tp_mif03.Message"%>
 
 
-<%!  private List<Message> list = new ArrayList<Message>();%>
+<%!  HashMap<String, ArrayList<Message>> salonList = new HashMap<String, ArrayList<Message>>();
+    List<Message> list = new ArrayList<Message>();
+%>
+
+
+
+<%  String nomSalon=(String)session.getAttribute("nom_salon");
+    if(!salonList.containsKey(nomSalon)) {
+        ArrayList<Message> listeMessage = new ArrayList<Message>();
+        salonList.put(nomSalon, listeMessage);
+    }
+%>
 
 
 <!DOCTYPE html>
@@ -15,13 +28,14 @@
     <meta http-equiv="refresh" content="5"/>
 </head>
 <body>
-<% out.println("<h1>"+ session.getAttribute("nom_salon")+"</h1>"); %>
-<%
+<% out.println("<h1>"+ session.getAttribute("nom_salon") +"</h1>");
+
+
     if (request.getMethod().equals("POST"))
     {
-        list.add(new Message((String) session.getAttribute("pseudo"), (String) request.getParameter("message")));
-    }
-    for (Message m : list)
+        salonList.get(nomSalon).add(new Message((String) session.getAttribute("pseudo"), (String) request.getParameter("message")));
+   }
+    for (Message m : salonList.get(nomSalon))
     {
         out.println("<p>" + m.toString() + "</p>");
     }

@@ -17,4 +17,13 @@
         <servlet-name>Init</servlet-name>
         <url-pattern>/Init</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Deco</servlet-name>
+        <servlet-class>tp_mif03.Deco</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Deco</servlet-name>
+        <url-pattern>/Deco</url-pattern>
+    </servlet-mapping>
 </web-app>
