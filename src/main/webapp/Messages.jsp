@@ -6,11 +6,7 @@
 <%@page import="tp_mif03.Message"%>
 
 
-<%!  HashMap<String, ArrayList<Message>> salonList = new HashMap<String, ArrayList<Message>>();
-    List<Message> list = new ArrayList<Message>();
-%>
-
-
+<%!  HashMap<String, ArrayList<Message>> salonList = new HashMap<String, ArrayList<Message>>(); %>
 
 <%  String nomSalon=(String)session.getAttribute("nom_salon");
     if(!salonList.containsKey(nomSalon)) {
