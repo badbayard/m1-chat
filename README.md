@@ -1,1 +1,3 @@
-magnifique creation d'un archive qui appelle l'utilisateur a sa lecture
+README
+
+Pour le choix de MVC nous avons opté pour le MVC Push-Based 
