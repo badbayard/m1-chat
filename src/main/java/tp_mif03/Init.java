@@ -43,8 +43,6 @@ public class Init extends HttpServlet {
             String pseudo = req.getParameter("pseudo"); //récupération du pseudo
             String nom_salon = req.getParameter("nom_salon");//récupération du nom du salon
             HttpSession session = req.getSession(true); // récupération de la session
-            //pw.println("<h1>"+nom_salon+"</h1>");
-            //pw.println("<h2>"+session+"</h2>");
             session.setAttribute("pseudo",pseudo);
             session.setAttribute("nom_salon",nom_salon);
             res.sendRedirect("interface.html");
