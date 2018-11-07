@@ -12,10 +12,29 @@
 
     <servlet>
         <servlet-name>Controller</servlet-name>
-        <servlet-class>tp_mif03.Controller</servlet-class>
+        <servlet-class>tp_mif03.ChatController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Controller</servlet-name>
         <url-pattern>/Controller</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Deco</servlet-name>
+        <servlet-class>tp_mif03.Deco</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Deco</servlet-name>
+        <url-pattern>/Deco</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>beans</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>beans</servlet-name>
+        <url-pattern>/chat/</url-pattern>
     </servlet-mapping>
 </web-app>

@@ -1,13 +1,15 @@
-package tp_mif03;
+package tp_mif03.bean;
+
+import tp_mif03.Message;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.lang.String;
 
-public class SalonList {
+public class GestionMessages {
     private HashMap<String, ArrayList<Message>> sList;
 
-    public SalonList() {
+    public GestionMessages() {
         sList = new HashMap<String, ArrayList<Message>>();
     }
 
