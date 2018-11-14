@@ -53,7 +53,7 @@ public class ChatController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html");
-        PrintWriter out = response.getWriter()
+        PrintWriter out = response.getWriter();
 
         out.println("<h1>"+ request.getAttribute("nom_salon") +"</h1>");
 
