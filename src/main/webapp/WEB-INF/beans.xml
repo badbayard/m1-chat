@@ -7,7 +7,7 @@
            http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <bean id="GestionMessages" class="tp_mif03.bean.GestionMessages">
+    <bean id="gM" class="tp_mif03.Model.GestionMessages">
     </bean>
 
     <context:annotation-config/>
