@@ -1,4 +1,4 @@
-package tp_mif03;
+package tp_mif03.Model;
 
 public class Message {
     private final String pseudo;
