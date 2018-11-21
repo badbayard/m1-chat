@@ -1,14 +1,9 @@
 <%@page import="java.lang.String"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="tp_mif03.Message"%>
-<%@page import="tp_mif03.SalonList"%>
+<%@page import="tp_mif03.Model.Message"%>
+<%@page import="tp_mif03.Model.GestionMessages"%>
 
-
-<%! SalonList sList = new SalonList(); %>
-
-<%  String nomSalon=(String)session.getAttribute("nom_salon");
-    sList.addSalon(nomSalon);%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 
@@ -18,17 +13,10 @@
     <meta http-equiv="refresh" content="5"/>
 </head>
 <body>
-<% out.println("<h1>"+ session.getAttribute("nom_salon") +"</h1>");
-
-
-    if (request.getMethod().equals("POST"))
-    {
-        sList.addMsg(nomSalon, (String)session.getAttribute("pseudo"), (String)request.getParameter("message"));
-    }
-    for (Message m : sList.getSalon(nomSalon))
-    {
-        out.println("<p>" + m.toString() + "</p>");
-    }
-%>
+<p><b>Salon <c:out value="${sessionScope.nom_salon}" /></b></p>
+<c:forEach items="${applicationScope.gM.getSalon(sessionScope.nom_salon)}" var="message" >
+    <b><c:out value="${message.pseudo}" /></b> : <c:out value="${message.texte}" />
+    <br/><br/>
+</c:forEach>
 </body>
 </html>
