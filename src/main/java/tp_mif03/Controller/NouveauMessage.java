@@ -38,7 +38,7 @@ public class NouveauMessage extends HttpServlet {
         }
 //        l'ideal serait mettre une alerte disant que l'utilisateur n'existe pas
         else {
-            res.sendRedirect("index.html");
+            res.sendRedirect("chat.html"); //petit fix de redirection
         }
 
     }
