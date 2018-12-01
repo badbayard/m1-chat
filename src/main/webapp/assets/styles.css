@@ -1,0 +1,22 @@
+
+html, body {
+    height:100%;
+    overflow:hidden;
+
+}
+
+
+#main {
+    background:url("bkg.jpg") bottom right no-repeat;
+    background-color: #c0c0b6;
+}
+
+
+#back {
+    background:url("back-bkg.jpg") bottom right no-repeat;
+    background-color: #c0c0b6;
+}
+
+h1 {
+    color: #303028;
+}

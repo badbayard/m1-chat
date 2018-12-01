@@ -34,11 +34,10 @@ public class NouveauMessage extends HttpServlet {
         GestionUtilisateurs gU = (GestionUtilisateurs) sContext.getAttribute("gU");
         if(gU.getListeUtilisateurs().contains(session.getAttribute("pseudo"))){
             gM.addMsg(newNom_salon, newPseudo, msg);
-            res.sendRedirect("chat.html");
+            res.sendRedirect("chat.jsp");
         }
-//        l'ideal serait mettre une alerte disant que l'utilisateur n'existe pas
         else {
-            res.sendRedirect("index.html");
+            res.sendRedirect("chat.jsp"); //petit fix de redirection
         }
 
     }
@@ -46,7 +45,7 @@ public class NouveauMessage extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException {
-        res.sendRedirect("chat.html");
+        res.sendRedirect("chat.jsp");
 
     }
 

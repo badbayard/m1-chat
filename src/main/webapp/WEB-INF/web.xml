@@ -10,15 +10,14 @@
         version="3.0">
   <display-name>Archetype Created Web Application</display-name>
 
-
-
     <servlet>
-        <servlet-name>beans</servlet-name>
+        <servlet-name>dispatcher</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>beans</servlet-name>
-        <url-pattern>/chat/</url-pattern>
+        <servlet-name>dispatcher</servlet-name>
+        <url-pattern>/goto/*</url-pattern>
     </servlet-mapping>
 </web-app>
