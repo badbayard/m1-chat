@@ -31,19 +31,26 @@ public class GestionMessages {
     }
 
     public void addMsg(String nomSalon, String nomUser, String message) {
-
         ArrayList<Message> test = sList.get(nomSalon);
-        if(test != null) {
-            System.out.println(" i is not null " + nomSalon);
-        }
-        else {
-            System.out.println("i is null " + nomSalon);
-        }
-        Message newMsg = new Message(nomUser , message);
+        int nbId = sList.get(nomSalon).size();
+        Message newMsg = new Message(nomUser , message, nbId+1);
         sList.get(nomSalon).add(newMsg);
-        for (Message m : sList.get(nomSalon) )
-        {
-            System.out.println(m.toString());
+    }
+
+    public Message getMessageFromSalon(String salon, int nbId) {
+        ArrayList<Message> test = sList.get(salon);
+        Message msg;
+        if(nbId > test.size()) {
+            msg = new Message("ERROR" , "theres is no message with this id", 0);
+            return msg;
         }
+        for(Message m : test){
+            if(m.getNbId() == nbId) {
+                msg = m;
+                return msg;
+            }
+        }
+        msg = new Message("ERROR" , "theres is no message with this id", 0);
+        return msg;
     }
 }

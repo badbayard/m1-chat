@@ -3,11 +3,13 @@ package tp_mif03.Model;
 public class Message {
     private final String pseudo;
     private String texte;
+    private final int nbId;
     private String nom_salon;
 
-    public Message(String pseudo, String texte) {
+    public Message(String pseudo, String texte, int nbId) {
         this.pseudo = pseudo;
         this.texte = texte;
+        this.nbId = nbId;
     }
 
     public String getPseudo() {
@@ -16,6 +18,10 @@ public class Message {
 
     public String getTexte() {
         return texte;
+    }
+
+    public int getNbId() {
+        return nbId;
     }
 
     public void setTexte(String texte) {

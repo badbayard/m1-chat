@@ -10,10 +10,7 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.ServletContext;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 
 @WebServlet("/Init")
 public class Init extends HttpServlet {
@@ -33,43 +30,44 @@ public class Init extends HttpServlet {
 
         GestionMessages gM = (GestionMessages) sContext.getAttribute("gM");
         GestionUtilisateurs gU = (GestionUtilisateurs) sContext.getAttribute("gU");
-                System.out.println(" i says hewwo");
         if(gU == null) {
-            gU = new GestionUtilisateurs();
-            gU.nouveauUtilisateur(pseudo);
-            System.out.println(" i is null");
+            sContext.setAttribute("gU", gU);
+            res.sendRedirect("user404.jsp");
+        }
+        else if(!gU.getListeUtilisateurs().contains(req.getParameter("pseudo"))) {
+            sContext.setAttribute("gU", gU);
+            res.sendRedirect("user404.jsp");
+        }
+        else if(gU.getListeUtilisateurs().contains(req.getParameter("pseudo"))){
             sContext.setAttribute("gU", gU);
 
-        }
-        else if(!gU.getListeUtilisateurs().contains(req.getParameter("nom_salon"))) {
-            System.out.println(" i has not a user");
-            gU.nouveauUtilisateur(pseudo);
-            sContext.setAttribute("gU", gU);
+            if(gM == null) {
+                gM = new GestionMessages();
+                gM.addSalon(nom_salon);
+                sContext.setAttribute("gM", gM);
+            }
+            else if(gM.getSalon(nom_salon) == null) {
+                gM.addSalon(nom_salon);
+                sContext.setAttribute("gM", gM);
+            }
+            else {
+                sContext.setAttribute("gM", gM);
+            }
 
-        }
-        else {
-            System.out.println(" i had a user");
-            sContext.setAttribute("gU", gU);
+            Cookie cookieSalon = new Cookie("nom_salon", req.getParameter("nom_salon"));
+            Cookie cookiePseudo = new Cookie("pseudo", req.getParameter("pseudo"));
+            int nbMessage = gM.getSalon(nom_salon).size();
+            Cookie cookieNbMessage = new Cookie("nbMessage", Integer.toString(nbMessage));
+            cookieSalon.setMaxAge(86400);
+            cookieNbMessage.setMaxAge(86400);
+            res.addCookie(cookieSalon);
+            res.addCookie(cookiePseudo);
+            res.addCookie(cookieNbMessage);
 
-        }
-
-        if(gM == null) {
-            gM = new GestionMessages();
-            gM.addSalon(nom_salon);
-            sContext.setAttribute("gM", gM);
-
-        }
-        else if(gM.getSalon(nom_salon) == null) {
-            gM.addSalon(nom_salon);
-            sContext.setAttribute("gM", gM);
-
-        }
-        else {
-            sContext.setAttribute("gM", gM);
-
+            res.sendRedirect("chat.jsp");
         }
 
-        res.sendRedirect("chat.html");
+
     }
 
     @Override
