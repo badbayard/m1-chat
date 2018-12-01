@@ -13,7 +13,6 @@
     <meta http-equiv="refresh" content="5"/>
 </head>
 <body>
-<p><b>Salon <c:out value="${sessionScope.nom_salon}" /></b></p>
 <c:forEach items="${applicationScope.gM.getSalon(sessionScope.nom_salon)}" var="message" >
     <b><c:out value="${message.pseudo}" /></b> : <c:out value="${message.texte}" />
     <br/><br/>
