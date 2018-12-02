@@ -32,7 +32,7 @@ public class NouveauMessage extends HttpServlet {
 
         GestionMessages gM = (GestionMessages) sContext.getAttribute("gM");
         GestionUtilisateurs gU = (GestionUtilisateurs) sContext.getAttribute("gU");
-        if(gU.getListeUtilisateurs().contains(session.getAttribute("pseudo"))){
+        if(gU.getGestionUtilisateurs().contains(session.getAttribute("pseudo"))){
             gM.addMsg(newNom_salon, newPseudo, msg);
             res.sendRedirect("chat.jsp");
         }

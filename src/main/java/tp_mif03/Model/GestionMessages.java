@@ -15,7 +15,12 @@ public class GestionMessages {
         if(!listeSalons.containsKey(nomSalon)) {
             ArrayList<Message> listeMessage = new ArrayList<Message>();
             listeSalons.put(nomSalon, listeMessage);
-            ArrayList<Message> test = listeSalons.get(nomSalon);
+        }
+    }
+
+    public void supprimerSalon(String nomSalon) {
+        if(listeSalons.containsKey(nomSalon)) {
+            listeSalons.remove(nomSalon);
         }
     }
 
@@ -46,5 +51,10 @@ public class GestionMessages {
         }
         msg = new Message("ERROR" , "theres is no message with this id", 0);
         return msg;
+    }
+
+
+    public HashMap<String, ArrayList<Message>> getGestionMessages() {
+        return listeSalons;
     }
 }
