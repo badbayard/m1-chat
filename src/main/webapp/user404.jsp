@@ -1,18 +1,15 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Gabriel
-  Date: 01/12/2018
-  Time: 10:14
-  To change this template use File | Settings | File Templates.
---%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8"%>
 <html>
 <head>
-    <title>Title</title>
+    <title>Error</title>
     <link href="<c:url value="/assets/styles.css" />" rel="stylesheet">
 </head>
 <body id="back">
-<h1>User not on users list!</h1>
+
+<h1>This user is not on the users list!</h1>
+<a href="/index.html">Go back to index</a>
+
 </body>
+
 </html>

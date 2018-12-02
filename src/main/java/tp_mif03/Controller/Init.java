@@ -43,11 +43,11 @@ public class Init extends HttpServlet {
 
             if(gM == null) {
                 gM = new GestionMessages();
-                gM.addSalon(nom_salon);
+                gM.ajouterSalon(nom_salon);
                 sContext.setAttribute("gM", gM);
             }
             else if(gM.getSalon(nom_salon) == null) {
-                gM.addSalon(nom_salon);
+                gM.ajouterSalon(nom_salon);
                 sContext.setAttribute("gM", gM);
             }
             else {

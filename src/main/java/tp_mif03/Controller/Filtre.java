@@ -49,5 +49,4 @@ public class Filtre  extends HttpServlet implements Filter {
     public void init(FilterConfig configuration) throws ServletException {
         this.configuration = configuration;
     }
-
 }
