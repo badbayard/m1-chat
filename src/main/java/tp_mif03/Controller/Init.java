@@ -34,11 +34,11 @@ public class Init extends HttpServlet {
             sContext.setAttribute("gU", gU);
             res.sendRedirect("user404.jsp");
         }
-        else if(!gU.getListeUtilisateurs().contains(req.getParameter("pseudo"))) {
+        else if(!gU.getGestionUtilisateurs().contains(req.getParameter("pseudo"))) {
             sContext.setAttribute("gU", gU);
             res.sendRedirect("user404.jsp");
         }
-        else if(gU.getListeUtilisateurs().contains(req.getParameter("pseudo"))){
+        else if(gU.getGestionUtilisateurs().contains(req.getParameter("pseudo"))){
             sContext.setAttribute("gU", gU);
 
             if(gM == null) {

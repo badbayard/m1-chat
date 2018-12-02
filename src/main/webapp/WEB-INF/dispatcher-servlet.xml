@@ -20,4 +20,5 @@
 
     <context:annotation-config/>
     <context:component-scan base-package="tp_mif03"/>
+
 </beans>

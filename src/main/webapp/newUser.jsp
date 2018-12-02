@@ -12,7 +12,7 @@
 <h2>Here you can add some users</h2>
 <%--faudrait ajouter un popup pour indiquer que l'utilisateur a ete ajouté--%>
 <br>
-<form method="post" action="/goto/backoffice/users">
+<form method="post" action="/goto/backoffice/newuser">
     <label for="user">User's name</label>
     <input type="text" name="user" id="user" required />
     <input type="submit" value="Add">

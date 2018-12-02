@@ -20,13 +20,13 @@ public class SpringController  {
 
 
 
-    @RequestMapping("/backoffice")
+    @RequestMapping(value = "/backoffice", method = RequestMethod.GET)
     public String init() {
         return "backoffice";
     }
 
-    @GetMapping("/backoffice/salon/{salon}")
-    public String SalonGet(@PathVariable String salon, @RequestParam(value = "nbId", required = false, defaultValue = "0") int nbId, Model m) {
+    @RequestMapping(value = "/backoffice/salon/{salon}", method = RequestMethod.GET)
+    public String GetSalon(@PathVariable String salon, @RequestParam(value = "nbId", required = false, defaultValue = "0") int nbId, Model m) {
         m.addAttribute("salon", salon);
         if(nbId == 0) {
             return "salon";
@@ -39,8 +39,8 @@ public class SpringController  {
     }
 
 
-    @PostMapping("/backoffice/users")
-    public String AddUserPOST(@RequestParam(value = "user") String user ,Model m){
+    @RequestMapping(value = "/backoffice/newuser",  method = RequestMethod.POST)
+    public String PostNewUser(@RequestParam(value = "user") String user ,Model m){
         GestionUtilisateurs gUBO;
         if(context.getAttribute("gU") == null){
             gUBO = new GestionUtilisateurs();
@@ -53,7 +53,7 @@ public class SpringController  {
         return "newUser";
     }
 
-    @GetMapping("/backoffice/index.html")
+    @RequestMapping(value = "/backoffice/index.html", method = RequestMethod.GET)
     public String SalonGet() {
         return "/index.html";
     }

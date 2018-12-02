@@ -33,7 +33,7 @@ public class Filtre  extends HttpServlet implements Filter {
             session.setAttribute("nom_salon", request.getParameter("nom_salon"));
         }
 
-        if(!gU.getListeUtilisateurs().contains(session.getAttribute("pseudo"))){
+        if(!gU.getGestionUtilisateurs().contains(session.getAttribute("pseudo"))){
             session.invalidate();
             response.sendRedirect("index.html");
             return;

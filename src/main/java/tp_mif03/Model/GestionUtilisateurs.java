@@ -14,11 +14,15 @@ public class GestionUtilisateurs {
         this.listeUtilisateurs = listeUtilisateurs;
     }
 
-    public Set<String> getListeUtilisateurs(){
+    public Set<String> getGestionUtilisateurs(){
         return listeUtilisateurs;
     }
 
     public void nouveauUtilisateur(String utilisateur){
         listeUtilisateurs.add(utilisateur);
+    }
+
+    public void supprimeUtilisateur(String utilisateur){
+        listeUtilisateurs.remove(utilisateur);
     }
 }

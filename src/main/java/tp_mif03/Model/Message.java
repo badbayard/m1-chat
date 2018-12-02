@@ -1,7 +1,7 @@
 package tp_mif03.Model;
 
 public class Message {
-    private final String pseudo;
+    private String pseudo;
     private String texte;
     private final int nbId;
     private String nom_salon;
@@ -14,6 +14,10 @@ public class Message {
 
     public String getPseudo() {
         return pseudo;
+    }
+
+    public void setPseudo(String newPseudo) {
+        pseudo = newPseudo;
     }
 
     public String getTexte() {
@@ -33,5 +37,9 @@ public class Message {
     @Override
     public String toString() {
         return pseudo+ " : " + texte ;
+    }
+
+    public Message getMessage() {
+        return this;
     }
 }
