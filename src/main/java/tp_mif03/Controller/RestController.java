@@ -1,4 +1,5 @@
 package tp_mif03.Controller;
+import org.springframework.http.HttpStatus;
 import tp_mif03.Model.GestionMessages;
 import tp_mif03.Model.GestionUtilisateurs;
 import tp_mif03.Model.Message;
@@ -24,8 +25,9 @@ public class RestController {
     }
 
 //  on recupere la liste des salon auxquels l'utilisateur a participé
-    @RequestMapping(value = "/backoffice/users/{user}", method = RequestMethod.GET)
-    public @ResponseBody ArrayList<String> getListeSalonsUtilisateur(@PathVariable String user) {
+    @RequestMapping(value = "/backoffice/users/{user}", method = RequestMethod.GET, produces={"application/xml", "application/json"})
+    @ResponseStatus(HttpStatus.OK)
+    public @ResponseBody List<String> getListeSalonsUtilisateur(@PathVariable String user) {
         GestionMessages gM = (GestionMessages) context.getAttribute("gM");
         GestionUtilisateurs gU = (GestionUtilisateurs) context.getAttribute("gU");
 
@@ -43,12 +45,12 @@ public class RestController {
         }
 
         //nous allons stocker les noms des salons auxquels l'utilisateur a participé
-        ArrayList<String> listeSalons = new ArrayList<>();
+        List<String> listeSalons = new ArrayList<>();
 
         //idee extraite de https://stackoverflow.com/questions/16246821/how-to-get-values-and-keys-from-hashmap/39432604#39432604
         for (Map.Entry<String, ArrayList<Message>> entry : gM.getGestionMessages().entrySet()) {
             String key = entry.getKey();
-            ArrayList<Message> tampon = entry.getValue();
+            List<Message> tampon = entry.getValue();
             for (int i = 0; i < tampon.size(); i++) {
                 if (tampon.get(i).getPseudo().equalsIgnoreCase(user)) {
                     listeSalons.add(key);

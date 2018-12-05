@@ -1,4 +1,4 @@
-<%--ettte page est en duplicata car on n''arrive pas a que lors des differents appels, rediriger vers celle qui est dans le repertoire jsp--%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
@@ -10,7 +10,6 @@
 <body id="back">
 
 <h2>Here you can add some users</h2>
-<%--faudrait ajouter un popup pour indiquer que l'utilisateur a ete ajouté--%>
 <br>
 <form method="post" action="/goto/backoffice/newuser">
     <label for="user">User's name</label>
