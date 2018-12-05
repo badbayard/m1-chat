@@ -34,20 +34,20 @@ public class Init extends HttpServlet {
             sContext.setAttribute("gU", gU);
             res.sendRedirect("user404.jsp");
         }
-        else if(!gU.getListeUtilisateurs().contains(req.getParameter("pseudo"))) {
+        else if(!gU.getGestionUtilisateurs().contains(req.getParameter("pseudo"))) {
             sContext.setAttribute("gU", gU);
             res.sendRedirect("user404.jsp");
         }
-        else if(gU.getListeUtilisateurs().contains(req.getParameter("pseudo"))){
+        else if(gU.getGestionUtilisateurs().contains(req.getParameter("pseudo"))){
             sContext.setAttribute("gU", gU);
 
             if(gM == null) {
                 gM = new GestionMessages();
-                gM.addSalon(nom_salon);
+                gM.ajouterSalon(nom_salon);
                 sContext.setAttribute("gM", gM);
             }
             else if(gM.getSalon(nom_salon) == null) {
-                gM.addSalon(nom_salon);
+                gM.ajouterSalon(nom_salon);
                 sContext.setAttribute("gM", gM);
             }
             else {

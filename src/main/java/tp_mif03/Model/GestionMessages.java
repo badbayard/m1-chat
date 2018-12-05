@@ -5,40 +5,39 @@ import java.util.HashMap;
 import java.lang.String;
 
 public class GestionMessages {
-    private HashMap<String, ArrayList<Message>> sList;
+    private HashMap<String, ArrayList<Message>> listeSalons;
 
     public GestionMessages() {
-        sList = new HashMap<String, ArrayList<Message>>();
+        listeSalons = new HashMap<String, ArrayList<Message>>();
     }
 
-    public void addSalon(String nomSalon) {
-        System.out.println("flag1");
-        if(!sList.containsKey(nomSalon)) {
+    public void ajouterSalon(String nomSalon) {
+        if(!listeSalons.containsKey(nomSalon)) {
             ArrayList<Message> listeMessage = new ArrayList<Message>();
-            sList.put(nomSalon, listeMessage);
-            ArrayList<Message> test = sList.get(nomSalon);
-            if(test != null) {
-                System.out.println(nomSalon);
-            }
-            else {
-                System.out.println("je suis né mais en fait non");
-            }
+            listeSalons.put(nomSalon, listeMessage);
+        }
+    }
+
+    public void supprimerSalon(String nomSalon) {
+        if(listeSalons.containsKey(nomSalon)) {
+            listeSalons.remove(nomSalon);
         }
     }
 
     public ArrayList<Message> getSalon(String nomSalon) {
-        return sList.get(nomSalon);
+        return listeSalons.get(nomSalon);
     }
 
     public void addMsg(String nomSalon, String nomUser, String message) {
-        ArrayList<Message> test = sList.get(nomSalon);
-        int nbId = sList.get(nomSalon).size();
-        Message newMsg = new Message(nomUser , message, nbId+1);
-        sList.get(nomSalon).add(newMsg);
+        if(listeSalons.containsKey(nomSalon)) {
+            int nbId = listeSalons.get(nomSalon).size();
+            Message newMsg = new Message(nomUser , message, nbId+1);
+            listeSalons.get(nomSalon).add(newMsg);
+        }
     }
 
-    public Message getMessageFromSalon(String salon, int nbId) {
-        ArrayList<Message> test = sList.get(salon);
+    public Message getMessage(String salon, int nbId) {
+        ArrayList<Message> test = listeSalons.get(salon);
         Message msg;
         if(nbId > test.size()) {
             msg = new Message("ERROR" , "theres is no message with this id", 0);
@@ -52,5 +51,10 @@ public class GestionMessages {
         }
         msg = new Message("ERROR" , "theres is no message with this id", 0);
         return msg;
+    }
+
+
+    public HashMap<String, ArrayList<Message>> getGestionMessages() {
+        return listeSalons;
     }
 }
