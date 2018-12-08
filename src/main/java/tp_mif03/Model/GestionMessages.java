@@ -1,5 +1,8 @@
 package tp_mif03.Model;
 
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.lang.String;
@@ -52,7 +55,6 @@ public class GestionMessages {
         msg = new Message("ERROR" , "theres is no message with this id", 0);
         return msg;
     }
-
 
     public HashMap<String, ArrayList<Message>> getGestionMessages() {
         return listeSalons;

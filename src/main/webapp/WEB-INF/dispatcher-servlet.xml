@@ -14,24 +14,21 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
-
-    <bean id="contentNegotiationManager"
-          class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
-        <property name="favorPathExtension" value="false" />
-        <property name="favorParameter" value="true" />
-        <property name="parameterName" value="mediaType" />
-        <property name="ignoreAcceptHeader" value="true"/>
-        <property name="useJaf" value="false"/>
-        <property name="defaultContentType" value="application/json" />
-
-        <property name="mediaTypes">
-            <map>
-                <entry key="json" value="application/json" />
-                <entry key="xml" value="application/xml" />
-            </map>
+    <bean id="exceptionHandler" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="defaultErrorView" value="error/unknown404"/>
+        <property name="exceptionMappings">
+            <props>
+                <prop key="java.lang.NullPointerException">
+                    error/nullpointererror
+                </prop>
+                <prop key="tp_mif03.Controller.CustomException">
+                    error/error404
+                </prop>
+            </props>
         </property>
+
     </bean>
-    <mvc:annotation-driven/>
+    
     <context:annotation-config/>
     <context:component-scan base-package="tp_mif03"/>
 

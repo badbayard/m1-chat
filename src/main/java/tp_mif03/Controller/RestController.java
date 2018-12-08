@@ -1,5 +1,6 @@
 package tp_mif03.Controller;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import tp_mif03.Model.GestionMessages;
 import tp_mif03.Model.GestionUtilisateurs;
 import tp_mif03.Model.Message;
@@ -25,24 +26,16 @@ public class RestController {
     }
 
 //  on recupere la liste des salon auxquels l'utilisateur a participé
-    @RequestMapping(value = "/backoffice/users/{user}", method = RequestMethod.GET, produces={"application/xml", "application/json"})
+    @RequestMapping(value = "/backoffice/users/{user}", method = RequestMethod.GET, produces= MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public @ResponseBody List<String> getListeSalonsUtilisateur(@PathVariable String user) {
+    public @ResponseBody List<String> getListeSalonsUtilisateur(@PathVariable String user) throws Exception {
         GestionMessages gM = (GestionMessages) context.getAttribute("gM");
         GestionUtilisateurs gU = (GestionUtilisateurs) context.getAttribute("gU");
 
-        //on verifie si gM ou gU existent, le cas echeant on lance des exception
-        if (gM == null || gU == null || !gU.getGestionUtilisateurs().contains(user)) {
-            if (gM == null) {
-                throw new NullPointerException("The salon list is empty");
-            }
-            else if(gU == null) {
-                throw new NullPointerException("The user list is empty");
-            }
-            else if(!gU.getGestionUtilisateurs().contains(user)) {
-                throw new NullPointerException("This user hasnt been added yet");
-            }
-        }
+       //on verifie si l'utilisateur existe, le cas echeant on lance des exception
+       if(!gU.getGestionUtilisateurs().contains(user)) {
+           throw new CustomException("E404", "The user is not on the user list");
+       }
 
         //nous allons stocker les noms des salons auxquels l'utilisateur a participé
         List<String> listeSalons = new ArrayList<>();
@@ -63,22 +56,15 @@ public class RestController {
     }
 
     // modification du pseudo, le nouveau pseudo passe en parametre sur l'URL
-    @RequestMapping(value = "backoffice/users/{user}", method = RequestMethod.PUT)
+    @RequestMapping(value = "backoffice/users/{user}", method = RequestMethod.PUT, produces= MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
     public void modifyUser(@PathVariable String user, @RequestParam String newPseudo) {
         GestionMessages gM = (GestionMessages) context.getAttribute("gM");
         GestionUtilisateurs gU = (GestionUtilisateurs) context.getAttribute("gU");
 
-        //on verifie si gM ou gU existent, le cas echeant on lance des exception
-        if (gM == null || gU == null || !gU.getGestionUtilisateurs().contains(user)) {
-            if (gM == null) {
-                throw new NullPointerException("The salon list is empty");
-            }
-            else if(gU == null) {
-                throw new NullPointerException("The user list is empty");
-            }
-            else if(!gU.getGestionUtilisateurs().contains(user)) {
-                throw new NullPointerException("This user hasnt been added yet");
-            }
+        //on verifie si l'utilisateur existe, le cas echeant on lance des exception
+        if(!gU.getGestionUtilisateurs().contains(user)) {
+            throw new CustomException("E404", "The user hasnt been added (yet)");
         }
 
         gU.nouveauUtilisateur(user);
@@ -96,20 +82,15 @@ public class RestController {
     }
 
     //pour un salon, Récupérer la liste des messages (on met le json sur l'url pour le differencier de l'affichage)
-    @RequestMapping(value = "backoffice/salon/{salon}/json", method = RequestMethod.GET)
+    @RequestMapping(value = "backoffice/salon/{salon}/json", method = RequestMethod.GET, produces= MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
     public @ResponseBody ArrayList<Message> listeMessagesSalon(@PathVariable String salon) {
         GestionMessages gM = (GestionMessages) context.getAttribute("gM");
 
-        //on verifie si gM ou gU existent, le cas echeant on lance des exception
-        if (gM == null || !gM.getGestionMessages().containsKey(salon)) {
-            if (gM == null) {
-                throw new NullPointerException("The salon list is empty");
-            }
-            else if(!gM.getGestionMessages().containsKey(salon)) {
-                throw new NullPointerException("This salon hasnt been added yet");
-            }
+        //on verifie si l'utilisateur existe, le cas echeant on lance des exception
+        if(!gM.getGestionMessages().containsKey(salon)) {
+            throw new CustomException("E404", "This salon hasnt been added (yet)");
         }
-
         ArrayList<Message> messagesSalon = new ArrayList<>();
         for (int i = 0; i < gM.getSalon(salon).size(); i++) {
             messagesSalon.add(gM.getSalon(salon).get(i));
@@ -118,18 +99,14 @@ public class RestController {
     }
 
     //pour un salon, Récupérer le nombre de messages
-    @RequestMapping(value = "backoffice/salon/{salon}/nbMessages", method = RequestMethod.GET)
+    @RequestMapping(value = "backoffice/salon/{salon}/nbMessages", method = RequestMethod.GET, produces= MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
     public @ResponseBody int getNbMessagesSalon(@PathVariable String salon) {
         GestionMessages gM = (GestionMessages) context.getAttribute("gM");
 
-        //on verifie si gM ou gU existent, le cas echeant on lance des exception
-        if (gM == null || !gM.getGestionMessages().containsKey(salon)) {
-            if (gM == null) {
-                throw new NullPointerException("The salon list is empty");
-            }
-            else if(!gM.getGestionMessages().containsKey(salon)) {
-                throw new NullPointerException("This salon hasnt been added yet");
-            }
+        //on verifie si l'utilisateur existe, le cas echeant on lance des exception
+        if(!gM.getGestionMessages().containsKey(salon)) {
+            throw new CustomException("E404", "This salon hasnt been added (yet)");
         }
 
         int nbMessages = gM.getSalon(salon).size();
@@ -140,22 +117,15 @@ public class RestController {
     //a faire
 
     //pour un salon, ajouter un message
-    @RequestMapping(value = "backoffice/salon/{salon}/NouveauMessage", method = RequestMethod.POST)
+    @RequestMapping(value = "backoffice/salon/{salon}/NouveauMessage", method = RequestMethod.POST, produces= MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
     public @ResponseBody void NouveauMessage(@PathVariable String salon, @RequestParam(value = "pseudo") String pseudo, @RequestParam(value = "texte") String texte) {
         GestionMessages gM = (GestionMessages) context.getAttribute("gestionMessage");
         GestionUtilisateurs gU = (GestionUtilisateurs) context.getAttribute("gestionUtilisateurs");
 
-        //on verifie si gM ou gU existent, le cas echeant on lance des exception
-        if (gM == null || gU == null || !gU.getGestionUtilisateurs().contains(pseudo)) {
-            if (gM == null) {
-                throw new NullPointerException("The salon list is empty");
-            }
-            else if(gU == null) {
-                throw new NullPointerException("The user list is empty");
-            }
-            else if(!gU.getGestionUtilisateurs().contains(pseudo)) {
-                throw new NullPointerException("This user hasnt been added yet");
-            }
+        //on verifie si l'utilisateur existe, le cas echeant on lance des exception
+        if(!gU.getGestionUtilisateurs().contains(pseudo)) {
+            throw new CustomException("E404", "The user hasnt been added (yet)");
         }
 
         Message message = new Message(pseudo, texte, gM.getSalon(salon).size()+1);
@@ -164,39 +134,32 @@ public class RestController {
     }
 
     //pour un salon, suppriñer un salon
-    @RequestMapping(value = "backoffice/salon/{salon}/delete", method = RequestMethod.DELETE)
+    @RequestMapping(value = "backoffice/salon/{salon}/delete", method = RequestMethod.DELETE, produces= MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
     public @ResponseBody void supprimeSalon(@PathVariable String salon) {
         GestionMessages gM = (GestionMessages) context.getAttribute("gM");
 
-        //on verifie si gM ou gU existent, le cas echeant on lance des exception
-        if (gM == null || !gM.getGestionMessages().containsKey(salon)) {
-            if (gM == null) {
-                throw new NullPointerException("The salon list is empty");
-            }
-            else if(!gM.getGestionMessages().containsKey(salon)) {
-                throw new NullPointerException("This salon hasnt been added yet");
-            }
+        //on verifie si l'utilisateur existe, le cas echeant on lance des exception
+        if(!gM.getGestionMessages().containsKey(salon)) {
+            throw new CustomException("E404", "This salon hasnt been added (yet)");
         }
 
         gM.supprimerSalon(salon);
     }
 
     //pour un message, Récupérer les informations du message
-    @RequestMapping(value = "backoffice/salon/{salon}/message/{nbId}", method = RequestMethod.GET)
+    @RequestMapping(value = "backoffice/salon/{salon}/message/{nbId}", method = RequestMethod.GET, produces= MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
     public @ResponseBody Message infoMessage(@PathVariable String salon, @PathVariable int nbId) {
         GestionMessages gM = (GestionMessages) context.getAttribute("gM");
 
-        //on verifie si gM ou gU existent, le cas echeant on lance des exception
-        if (gM == null || !gM.getGestionMessages().containsKey(salon) || gM.getSalon(salon).size() < nbId) {
-            if (gM == null) {
-                throw new NullPointerException("The salon list is empty");
-            }
-            else if(!gM.getGestionMessages().containsKey(salon)) {
-                throw new NullPointerException("This salon hasnt been added yet");
-            }
-            else if(gM.getSalon(salon).size() < nbId) {
-                throw new NullPointerException("There is no message with this id");
-            }
+        //on verifie si l'utilisateur existe, le cas echeant on lance des exception
+        if(!gM.getGestionMessages().containsKey(salon)) {
+            throw new CustomException("E404", "This salon hasnt been added (yet)");
+        }
+        //on verifie si l'utilisateur existe, le cas echeant on lance des exception
+        else if(gM.getSalon(salon).size() < nbId) {
+            throw new CustomException("E404", "There is no message with this id");
         }
 
         Message message = gM.getMessage(salon, nbId);

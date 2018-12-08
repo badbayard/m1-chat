@@ -31,12 +31,12 @@ public class Init extends HttpServlet {
         GestionMessages gM = (GestionMessages) sContext.getAttribute("gM");
         GestionUtilisateurs gU = (GestionUtilisateurs) sContext.getAttribute("gU");
         if(gU == null) {
-            sContext.setAttribute("gU", gU);
-            res.sendRedirect("user404.jsp");
+//            throw new CustomException("E404", "The user list is empty");
+            res.sendRedirect("userNotFound.jsp");
         }
         else if(!gU.getGestionUtilisateurs().contains(req.getParameter("pseudo"))) {
-            sContext.setAttribute("gU", gU);
-            res.sendRedirect("user404.jsp");
+//            throw new CustomException("E404", "The user is not on the user list");
+            res.sendRedirect("userNotFound.jsp");
         }
         else if(gU.getGestionUtilisateurs().contains(req.getParameter("pseudo"))){
             sContext.setAttribute("gU", gU);

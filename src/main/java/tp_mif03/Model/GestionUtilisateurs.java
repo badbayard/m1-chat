@@ -1,20 +1,23 @@
 package tp_mif03.Model;
 
-import java.util.HashSet;
-import java.util.Set;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class GestionUtilisateurs {
-    private Set<String> listeUtilisateurs;
+    private List<String> listeUtilisateurs;
 
     public GestionUtilisateurs(){
-        listeUtilisateurs = new HashSet<>();
+        listeUtilisateurs = new ArrayList<>();
     }
 
-    public void setListeUtilisateurs(Set<String> listeUtilisateurs){
+    public void setListeUtilisateurs(List<String> listeUtilisateurs){
         this.listeUtilisateurs = listeUtilisateurs;
     }
 
-    public Set<String> getGestionUtilisateurs(){
+    public List<String> getListeUtilisateurs(){return this.listeUtilisateurs;}
+
+    public List<String> getGestionUtilisateurs(){
         return listeUtilisateurs;
     }
 
@@ -25,4 +28,5 @@ public class GestionUtilisateurs {
     public void supprimeUtilisateur(String utilisateur){
         listeUtilisateurs.remove(utilisateur);
     }
+
 }
