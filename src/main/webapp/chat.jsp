@@ -19,7 +19,7 @@
 <form method="post" action="NouveauMessage">
     <p>
         Type your message :
-        <input type="text" name="message">
+        <input type="text" name="message" required>
         <input type="submit" value="Send">
     </p>
 </form>

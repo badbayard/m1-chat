@@ -50,7 +50,7 @@ public class SpringController  {
         gUBO.nouveauUtilisateur(user);
         context.setAttribute("gU", gUBO);
         m.addAttribute("user", user);
-        return "newUser";
+        return "addedUser";
     }
 
     @RequestMapping(value = "/backoffice/index.html", method = RequestMethod.GET)
