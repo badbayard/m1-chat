@@ -7,14 +7,9 @@
 </head>
 <body id="back">
 
-<h2>Here you can add some users</h2>
-<%--faudrait ajouter un popup pour indiquer que l'utilisateur a ete ajouté--%>
-<br>
-<form method="post" action="/goto/backoffice/newuser">
-    <label for="user">User's name</label>
-    <input type="text" name="user" id="user" required />
-    <input type="submit" value="Add">
-</form>
+<h2>User Added!</h2>
+
+
 <br>
 <a href="/index.html">Go back to index</a>
 
