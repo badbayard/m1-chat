@@ -49,7 +49,7 @@ public class SpringController  {
         }
         gUBO.nouveauUtilisateur(user);
         context.setAttribute("gU", gUBO);
-        m.addAttribute("user", user);
+        m.addAttribute("username", user);
         return "addedUser";
     }
 
