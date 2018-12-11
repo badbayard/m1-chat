@@ -13,7 +13,7 @@
 <p>And this is its backlog</p>
 <div>
 <c:forEach items="${applicationScope.gM.getSalon(salon)}" var="message" >
-    <b><c:out value="${message.pseudo}" /></b> : <c:out value="${message.texte}" />
+    <b><c:out value="${message.username}" /></b> : <c:out value="${message.texte}" />
     <br>
     <br>
 </c:forEach>
