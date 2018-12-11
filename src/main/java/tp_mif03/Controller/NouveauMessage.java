@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet("/NouveauMessage")
+@WebServlet("/ClientPreAjax/NouveauMessage")
 public class NouveauMessage extends HttpServlet {
 
 
@@ -25,15 +25,15 @@ public class NouveauMessage extends HttpServlet {
         HttpSession session = req.getSession(true); // récupération de la session
         ServletContext sContext = getServletContext();
 
-        String newPseudo = (String) session.getAttribute("pseudo");
+        String newUsername = (String) session.getAttribute("username");
         String newNom_salon = (String) session.getAttribute("nom_salon");
         String msg = req.getParameter("message");
 
 
         GestionMessages gM = (GestionMessages) sContext.getAttribute("gM");
         GestionUtilisateurs gU = (GestionUtilisateurs) sContext.getAttribute("gU");
-        if(gU.getGestionUtilisateurs().contains(session.getAttribute("pseudo"))){
-            gM.addMsg(newNom_salon, newPseudo, msg);
+        if(gU.getListeUtilisateurs().contains(session.getAttribute("username"))){
+            gM.addMsg(newNom_salon, newUsername, msg);
             res.sendRedirect("chat.jsp");
         }
         else {

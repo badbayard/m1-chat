@@ -23,7 +23,7 @@
         <input type="submit" value="Send">
     </p>
 </form>
-<p><a href="Deconnection" name="Deconnection">Log Out</a></p>
+<p><a href="${pageContext.request.contextPath}/Deconnection" name="Deconnection">Log Out</a></p>
 
 </body>
 </html>

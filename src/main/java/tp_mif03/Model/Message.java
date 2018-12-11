@@ -1,23 +1,22 @@
 package tp_mif03.Model;
 
 public class Message {
-    private String pseudo;
+    private String username;
     private String texte;
     private final int nbId;
-    private String nom_salon;
 
-    public Message(String pseudo, String texte, int nbId) {
-        this.pseudo = pseudo;
+    public Message(String username, String texte, int nbId) {
+        this.username = username;
         this.texte = texte;
         this.nbId = nbId;
     }
 
-    public String getPseudo() {
-        return pseudo;
+    public String getUsername() {
+        return username;
     }
 
-    public void setPseudo(String newPseudo) {
-        pseudo = newPseudo;
+    public void setUsername(String newUsername) {
+        username = newUsername;
     }
 
     public String getTexte() {
@@ -32,14 +31,9 @@ public class Message {
         this.texte = texte;
     }
 
-    public String getNomSalon(){ return nom_salon ;}
-
     @Override
     public String toString() {
-        return pseudo+ " : " + texte ;
+        return username+ " : " + texte ;
     }
 
-    public Message getMessage() {
-        return this;
-    }
 }

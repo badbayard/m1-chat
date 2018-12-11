@@ -31,10 +31,10 @@ public class GestionMessages {
         return listeSalons.get(nomSalon);
     }
 
-    public void addMsg(String nomSalon, String nomUser, String message) {
+    public void addMsg(String nomSalon, String username, String message) {
         if(listeSalons.containsKey(nomSalon)) {
             int nbId = listeSalons.get(nomSalon).size();
-            Message newMsg = new Message(nomUser , message, nbId+1);
+            Message newMsg = new Message(username , message, nbId+1);
             listeSalons.get(nomSalon).add(newMsg);
         }
     }

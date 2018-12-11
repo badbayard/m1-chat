@@ -8,6 +8,6 @@
 <body id="back">
 
 <h1>Welcome to The (back)Office</h1>
-<a href="/index.html">Go back to index</a>
+<a href="/ClientPreAjax/interface.html">Go back to index</a>
 </body>
 </html>

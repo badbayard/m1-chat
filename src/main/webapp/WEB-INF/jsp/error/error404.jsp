@@ -11,7 +11,7 @@
 
     <h2>${exception.errMsg}</h2>
 
-<a href="/index.html">Go back to index</a>
+<a href="/ClientPreAjax/interface.html">Go back to index</a>
 
 </body>
 

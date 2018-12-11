@@ -5,16 +5,29 @@ html, body {
 
 }
 
-
+#select {
+    background:url("map.jpg") bottom no-repeat;
+    background-size: 85%;
+}
 #main {
     background:url("bkg.jpg") bottom right no-repeat;
     background-color: #c0c0b6;
 }
 
-
 #back {
     background:url("back-bkg.jpg") bottom right no-repeat;
     background-color: #c0c0b6;
+}
+
+#ajax{
+    background:url("ajax-bkg.jpg") bottom right no-repeat;
+    background-size: 85%;
+}
+
+#menuDiv,#loginDiv, #usernameDiv, #salonListDiv, #userListDiv, #chatDiv, #messageDiv, #logoutDiv {
+    background-color:white;
+    width: 300px;
+    border-bottom: 2px solid black;
 }
 
 h1 {
