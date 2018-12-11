@@ -12,7 +12,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
-@WebServlet("/Init")
+@WebServlet("/ClientPreAjax/Init")
 public class Init extends HttpServlet {
 
     @Override
@@ -22,23 +22,23 @@ public class Init extends HttpServlet {
         ServletContext sContext = getServletContext();
 
 
-        String pseudo = req.getParameter("pseudo"); //récupération du pseudo
+        String username = req.getParameter("username"); //récupération du pseudo
         String nom_salon = req.getParameter("nom_salon");//récupération du nom du salon
 
-        session.setAttribute("pseudo",pseudo);
+        session.setAttribute("username",username);
         session.setAttribute("nom_salon",nom_salon);
 
         GestionMessages gM = (GestionMessages) sContext.getAttribute("gM");
         GestionUtilisateurs gU = (GestionUtilisateurs) sContext.getAttribute("gU");
         if(gU == null) {
 //            throw new CustomException("E404", "The user list is empty");
-            res.sendRedirect("userNotFound.jsp");
+            res.sendRedirect("userNotFound.html");
         }
-        else if(!gU.getGestionUtilisateurs().contains(req.getParameter("pseudo"))) {
+        else if(!gU.getListeUtilisateurs().contains(req.getParameter("username"))) {
 //            throw new CustomException("E404", "The user is not on the user list");
-            res.sendRedirect("userNotFound.jsp");
+            res.sendRedirect("userNotFound.html");
         }
-        else if(gU.getGestionUtilisateurs().contains(req.getParameter("pseudo"))){
+        else if(gU.getListeUtilisateurs().contains(req.getParameter("username"))){
             sContext.setAttribute("gU", gU);
 
             if(gM == null) {
@@ -55,16 +55,17 @@ public class Init extends HttpServlet {
             }
 
             Cookie cookieSalon = new Cookie("nom_salon", req.getParameter("nom_salon"));
-            Cookie cookiePseudo = new Cookie("pseudo", req.getParameter("pseudo"));
+            Cookie cookieUsername = new Cookie("username", req.getParameter("username"));
             int nbMessage = gM.getSalon(nom_salon).size();
             Cookie cookieNbMessage = new Cookie("nbMessage", Integer.toString(nbMessage));
             cookieSalon.setMaxAge(86400);
             cookieNbMessage.setMaxAge(86400);
             res.addCookie(cookieSalon);
-            res.addCookie(cookiePseudo);
+            res.addCookie(cookieUsername);
             res.addCookie(cookieNbMessage);
 
             res.sendRedirect("chat.jsp");
+
         }
 
 
@@ -75,12 +76,12 @@ public class Init extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = req.getSession(true); // récupération de la session
 
-        String pseudo = req.getParameter("pseudo"); //récupération du pseudo
+        String username = req.getParameter("username"); //récupération du pseudo
         String nom_salon = req.getParameter("nom_salon");//récupération du nom du salon
 
-        session.setAttribute("pseudo",pseudo);
+        session.setAttribute("username",username);
         session.setAttribute("nom_salon",nom_salon);
-        res.sendRedirect("index.html");
+        res.sendRedirect("interface.html");
 
     }
 

@@ -11,7 +11,7 @@
 
 <p>Whatever you tried to reach doesnt exist (yet)</p>
 
-<a href="/index.html">Go back to index</a>
+<a href="/ClientPreAjax/interface.html">Go back to index</a>
 
 </body>
 

@@ -17,12 +17,11 @@ public class GestionUtilisateurs {
 
     public List<String> getListeUtilisateurs(){return this.listeUtilisateurs;}
 
-    public List<String> getGestionUtilisateurs(){
-        return listeUtilisateurs;
-    }
 
     public void nouveauUtilisateur(String utilisateur){
-        listeUtilisateurs.add(utilisateur);
+        if(!listeUtilisateurs.contains(utilisateur)) {
+            listeUtilisateurs.add(utilisateur);
+        }
     }
 
     public void supprimeUtilisateur(String utilisateur){

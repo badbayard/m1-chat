@@ -1,27 +1,14 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>The Office</title>
-    <link rel="stylesheet" type="text/css" href="assets/styles.css">
+    <title>Client selection</title>
+    <link rel="stylesheet" type="text/css" href="../assets/styles.css">
 </head>
-<body id="main">
-
-<h1>Welcome to The Office</h1>
-
-<a href="/newUser.jsp">New User</a>
-
-<form method="post" action="Init">
-    <p>
-        Enter your pseudo:
-        <input type="text" name="pseudo" required>
-    </p>
-    <p>
-        Enter the salon's name:
-        <input type="text" name="nom_salon" required>
-    </p>
-    <input type="submit" value="Login">
-</form>
-
+<body id="select">
+<h1>Please select your client</h1>
+<a href="/ClientAjax/interfaceAjax.jsp">Go to Ajax</a>
+or
+<a href="/ClientPreAjax/interface.html">Go to Classic</a>
 </body>
 </html>

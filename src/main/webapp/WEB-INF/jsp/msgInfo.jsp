@@ -13,6 +13,6 @@
 <b><c:out value="${message.pseudo}" /></b>
 <c:out value="${message.texte}" />
 
-<a href="/index.html">Go back to index</a>
+<a href="/ClientPreAjax/interface.html">Go back to index</a>
 </body>
 </html>
