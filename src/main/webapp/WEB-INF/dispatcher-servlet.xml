@@ -5,8 +5,8 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-    <bean id="GestionUtilisateurs" class="tp_mif03.Model.GestionUtilisateurs"></bean>
-    <bean id="GestionMessages" class="tp_mif03.Model.GestionMessages"></bean>
+    <bean id="gestionUtilisateurs" class="tp_mif03.Model.GestionUtilisateurs"></bean>
+    <bean id="gestionMessages" class="tp_mif03.Model.GestionMessages"></bean>
 
     <bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>

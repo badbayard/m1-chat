@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter("/chat")
+@WebFilter("/ClientPreAjax/chat")
 public class Filtre  extends HttpServlet implements Filter {
 
     private FilterConfig configuration;
@@ -23,24 +23,24 @@ public class Filtre  extends HttpServlet implements Filter {
         HttpSession session = request.getSession();
 
         if(gU == null){
-            response.sendRedirect("index.html");
+            response.sendRedirect("interface.html");
             // sans le return, le filtre ne stoppe pas
             return;
         }
 
-        if(request.getParameter("pseudo") != null){
-            session.setAttribute("pseudo", request.getParameter("pseudo"));
+        if(request.getParameter("username") != null){
+            session.setAttribute("username", request.getParameter("username"));
             session.setAttribute("nom_salon", request.getParameter("nom_salon"));
         }
 
-        if(!gU.getGestionUtilisateurs().contains(session.getAttribute("pseudo"))){
+        if(!gU.getListeUtilisateurs().contains(session.getAttribute("username"))){
             session.invalidate();
-            response.sendRedirect("index.html");
+            response.sendRedirect("interface.html");
             return;
         }
 
-        if(session.getAttribute("pseudo") == null){
-            response.sendRedirect("index.html");
+        if(session.getAttribute("username") == null){
+            response.sendRedirect("interface.html");
         } else {
             chaine.doFilter(request, response);
         }

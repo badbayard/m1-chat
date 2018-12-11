@@ -55,7 +55,7 @@ public class SpringController  {
 
     @RequestMapping(value = "/backoffice/index.html", method = RequestMethod.GET)
     public String SalonGet() {
-        return "/index.html";
+        return "interface.html";
     }
 
 
